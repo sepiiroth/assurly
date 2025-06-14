@@ -8,7 +8,7 @@
     "check": "next lint && tsc --noEmit",
     "dev": "next dev",
     "test": "vitest",
-    "e2e": "playwright test",
+    "e2e": "npx playwright test",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "lint": "next lint",

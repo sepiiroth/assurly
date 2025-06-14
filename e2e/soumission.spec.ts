@@ -1,4 +1,4 @@
-// e2e/devis.spec.ts
+// e2e/soumission.spec.ts
 import { test, expect } from "@playwright/test";
 
 test("la soumission fonctionne", async ({ page }) => {
