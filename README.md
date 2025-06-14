@@ -20,7 +20,6 @@ Il illustre ma capacité à m'adapter rapidement à une stack moderne et à prod
   - [React 19](https://react.dev/)
   - [TypeScript](https://www.typescriptlang.org/)
   - [Emotion](https://emotion.sh/) (CSS-in-JS)
-  - [TanStack React Query](https://tanstack.com/query)
 
 - **Backend :**
 
@@ -47,12 +46,6 @@ Il illustre ma capacité à m'adapter rapidement à une stack moderne et à prod
 - 🤖 Test end-to-end complet du parcours utilisateur
 - ⚙️ CI GitHub Actions avec lint + tests unitaires + e2e
 - ♻️ Code structuré, logique métier isolée, composants réutilisables
-
----
-
-## 📸 Captures d’écran
-
-_(Tu peux insérer ici des screenshots avec un badge CI si tu veux)_
 
 ---
 
