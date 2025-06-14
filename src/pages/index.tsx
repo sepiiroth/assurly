@@ -1,7 +1,61 @@
+/** @jsxImportSource @emotion/react */
 "use client";
 
-import { api } from "@/trpc/react";
 import { useState } from "react";
+import styled from "@emotion/styled";
+import { api } from "@/trpc/react";
+
+const Container = styled.main`
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background: #f9f9f9;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+`;
+
+const Title = styled.h1`
+  font-size: 2rem;
+  margin-bottom: 1rem;
+`;
+
+const Label = styled.label`
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+`;
+
+const Button = styled.button`
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #333;
+  }
+`;
+
+const Result = styled.div`
+  margin-top: 2rem;
+  padding: 1rem;
+  border-left: 4px solid black;
+  background: white;
+`;
 
 export default function Home() {
   const [metier, setMetier] = useState("boulanger");
@@ -13,39 +67,40 @@ export default function Home() {
   );
 
   return (
-    <main className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Simulateur de devis</h1>
+    <Container>
+      <Title>Simulateur de Devis Pro</Title>
 
-      <input
+      <Label>Métier</Label>
+      <Input
+        type="text"
         value={metier}
         onChange={(e) => setMetier(e.target.value)}
-        placeholder="Métier"
-        className="border p-2 mr-2"
       />
-      <input
+
+      <Label>Chiffre d&apos;affaires (€)</Label>
+      <Input
         type="number"
         value={ca}
         onChange={(e) => setCA(Number(e.target.value))}
-        placeholder="Chiffre d'affaires"
-        className="border p-2 mr-2"
       />
 
-      <button
-        onClick={() => refetch()}
-        className="bg-black text-white p-2 mt-2"
-      >
-        Simuler
-      </button>
-
-      {isFetching && <p>Calcul en cours...</p>}
+      <Button onClick={() => refetch()}>
+        {isFetching ? "Calcul en cours..." : "Simuler mon tarif"}
+      </Button>
 
       {data && (
-        <div className="mt-4">
-          <p>Métier : {data.metier}</p>
-          <p>Chiffre d&apos;affaires : {data.ca} €</p>
-          <p className="font-bold">Tarif estimé : {data.tarif} €</p>
-        </div>
+        <Result>
+          <p>
+            <strong>Métier :</strong> {data.metier}
+          </p>
+          <p>
+            <strong>Chiffre d&apos;affaires :</strong> {data.ca} €
+          </p>
+          <p>
+            <strong>Tarif estimé :</strong> {data.tarif} € / mois
+          </p>
+        </Result>
       )}
-    </main>
+    </Container>
   );
 }
