@@ -66,6 +66,20 @@ export default function Home() {
     { enabled: false },
   );
 
+  const handleClick = () => {
+    if (!metier.trim()) {
+      alert("Veuillez entrer un métier");
+      return;
+    }
+
+    if (isNaN(ca) || ca <= 0) {
+      alert("Veuillez entrer un chiffre d'affaires valide");
+      return;
+    }
+
+    refetch(); // appel tRPC
+  };
+
   return (
     <Container>
       <Title>Simulateur de Devis Pro</Title>
@@ -75,6 +89,7 @@ export default function Home() {
         type="text"
         value={metier}
         onChange={(e) => setMetier(e.target.value)}
+        placeholder="Métier"
       />
 
       <Label>Chiffre d&apos;affaires (€)</Label>
@@ -82,9 +97,10 @@ export default function Home() {
         type="number"
         value={ca}
         onChange={(e) => setCA(Number(e.target.value))}
+        placeholder="Chiffre d'affaires"
       />
 
-      <Button onClick={() => refetch()}>
+      <Button onClick={handleClick}>
         {isFetching ? "Calcul en cours..." : "Simuler mon tarif"}
       </Button>
 
