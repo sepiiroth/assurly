@@ -23,4 +23,20 @@ export const devisRouter = createTRPCRouter({
         tarif: tarifFinal,
       };
     }),
+  soumettre: publicProcedure
+    .input(
+      z.object({
+        metier: z.string(),
+        ca: z.number(),
+      }),
+    )
+    .mutation(({ input }) => {
+      console.log("Demande reçue :", input);
+
+      // Simule un ID de demande
+      return {
+        success: true,
+        demandeId: Math.floor(Math.random() * 100000),
+      };
+    }),
 });

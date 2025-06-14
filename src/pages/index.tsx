@@ -66,7 +66,9 @@ export default function Home() {
     { enabled: false },
   );
 
-  const handleClick = () => {
+  const mutation = api.devis.soumettre.useMutation();
+
+  const handleClick = async () => {
     if (!metier.trim()) {
       alert("Veuillez entrer un métier");
       return;
@@ -77,7 +79,7 @@ export default function Home() {
       return;
     }
 
-    refetch(); // appel tRPC
+    await refetch(); // appel tRPC
   };
 
   return (
@@ -103,6 +105,16 @@ export default function Home() {
       <Button onClick={handleClick}>
         {isFetching ? "Calcul en cours..." : "Simuler mon tarif"}
       </Button>
+
+      <Button onClick={() => mutation.mutate({ metier, ca })}>
+        Envoyer ma demande
+      </Button>
+
+      {mutation.isSuccess && (
+        <p className="mt-4 text-green-600">
+          Demande envoyée ! ID : {mutation.data?.demandeId}
+        </p>
+      )}
 
       {data && (
         <Result>
