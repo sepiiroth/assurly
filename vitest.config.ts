@@ -5,5 +5,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom", // Pour simuler un navigateur
+    exclude: ["e2e", "node_modules"],
   },
 });
